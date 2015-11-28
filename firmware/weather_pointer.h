@@ -8,16 +8,16 @@
 #include "angle_movable.h"
 
 class WeatherPointer {
-    public:
+  public:
     WeatherPointer(AngleMovable &movable);
     void pointTo(const String &clothes);
-    
-    private:
+
+  private:
     typedef std::pair<String, int> ClothesAngle;
     typedef std::vector<ClothesAngle> ClothesAngles;
     static const ClothesAngles clothesAngles;
-    
+
     int findClothesAngle(const String &clothes);
-    
+
     AngleMovable &movable;
 };

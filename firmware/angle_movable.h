@@ -3,5 +3,5 @@
 
 class AngleMovable {
   public:
-  virtual void moveToAngle(int angle) = 0;
+    virtual void moveToAngle(int angle) = 0;
 };
