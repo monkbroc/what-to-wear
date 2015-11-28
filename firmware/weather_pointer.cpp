@@ -6,7 +6,7 @@
 const WeatherPointer::ClothesAngles WeatherPointer::clothesAngles = {
   { "umbrella", 167 },
   { "jacket", 137 },
-  { "tshirt", 115 },
+  { "tshirt", 113 },
   { "sweater", 83 },
   { "hat", 55 },
   { "shovel", 30 }
