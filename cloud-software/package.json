@@ -6,9 +6,10 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Julien Vanier",
+  "license": "MIT",
   "dependencies": {
+    "dotenv": "^1.2.0",
     "request-promise": "^1.0.2",
     "thenify": "^3.1.1"
   }

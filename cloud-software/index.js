@@ -1,24 +1,18 @@
-// var hook = require("./hook/what-to-wear.js");
-
+var env = require("./env");
 var datastore = require("./datastore");
+var res = require("./res");
 
-datastore.load()
-.then(function () {
-  return datastore.get("foo");
-})
-.then(function (data) {
-  console.log("get");
-  return console.log(data);
-})
-.then(function () {
-  console.log("set");
-  return datastore.set("foo", "quux");
-})
-.then(function () {
-  return console.log("Done!");
-})
-.catch(function (err) {
-  console.error("Error");
-  return console.error(err);
-});
+var whatToWear = require("./hook/what-to-wear.js");
 
+datastore.load();
+
+var hook = {
+  datastore: datastore,
+  env: env,
+  res: res
+};
+
+hook.params = {};
+
+
+whatToWear(hook);

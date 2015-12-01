@@ -4,14 +4,12 @@ var thenify = require('thenify').withCallback;
 var Datastore = {
   file: "data.json",
 
-  load: thenify(function (callback) {
-    fs.readFile(this.file, function (err, data) {
-      if(!err) {
-        this.store = JSON.parse(data);
-      }
-      callback(null);
-    }.bind(this));
-  }),
+  load: function () {
+    try {
+      var data = fs.readFileSync(this.file);
+      this.store = JSON.parse(data);
+    } catch (error) { }
+  },
 
   save: thenify(function (callback) {
     var data = JSON.stringify(this.store);
