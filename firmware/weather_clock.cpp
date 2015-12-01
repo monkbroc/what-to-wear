@@ -3,6 +3,7 @@
 #include "pointer.h"
 #include "persistence.h"
 #include "pointer_persistence.h"
+#include "power_supply.h"
 
 SYSTEM_THREAD(ENABLED);
 
@@ -10,6 +11,7 @@ Pointer pointer(D0);
 WeatherPointer weatherPointer(pointer);
 Persistence persistence;
 PointerPersistence pointerPersistence(pointer, persistence);
+PowerSupply powerSupply;
 
 const int CONNECT_DELAY_SECS = 30;
 const int SLEEP_DELAY_SECS = 60;
@@ -34,6 +36,8 @@ void goToSleep() {
 }
 
 void setup() {
+  powerSupply.setup();
+
   pointerPersistence.setup();
   Particle.subscribe("hook-response/what-to-wear", setClothesHook, MY_DEVICES);
   Particle.function("clothes", setClothes);
