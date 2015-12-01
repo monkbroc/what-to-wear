@@ -1,0 +1,8 @@
+umbrella => rain
+shovel => snow
+
+sunglasses => clear and low above 70
+sweater => clear and low between 40 and than 70
+jacket => low between 20 and 40
+hat and gloves => below 20
+
