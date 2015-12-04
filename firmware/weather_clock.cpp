@@ -18,17 +18,22 @@ const int SLEEP_DELAY_SECS = 60;
 const int SLEEP_TIME_SECS = 60 * 60;
 
 bool responseReceived = false;
+unsigned long sleepTimer = 0;
 
 int setClothes(String value) {
-  responseReceived = true;
+  sleepTimer = millis();
   weatherPointer.pointTo(value);
   return 0;
 }
 
 void setClothesHook(const char *event, const char *value) {
-  RGB.control(true);
-  RGB.color(255, 128, 0);
-  setClothes(String(value).trim());
+  String clothes = String(value).trim();
+  // When clothes selection is manual, wait for the "clothes" cloud
+  // function to be called to move the pointer
+  if(clothes != "manual") {
+    responseReceived = true;
+    setClothes(clothes);
+  }
 }
 
 void goToSleep() {
@@ -47,6 +52,7 @@ void setup() {
   } else {
     goToSleep();
   }
+  sleepTimer = millis();
 }
 
 bool readyToSleep() {
@@ -54,7 +60,7 @@ bool readyToSleep() {
     return true;
   }
 
-  return (millis() > SLEEP_DELAY_SECS * 1000);
+  return ((millis() - sleepTimer) > SLEEP_DELAY_SECS * 1000);
 }
 
 void loop() {
