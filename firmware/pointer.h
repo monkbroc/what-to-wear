@@ -12,7 +12,7 @@ class PointerObserver {
 
 class Pointer : public AngleMovable {
   public:
-    Pointer(int pin);
+    Pointer(int pwmPin, int powerPin);
     void moveToAngle(int angle);
     bool isMoving();
     void setInitialAngle(int angle);
@@ -27,7 +27,8 @@ class Pointer : public AngleMovable {
     void notifyObservers();
 
     static const int RATE = 1;
-    int pin;
+    int pwmPin;
+    int powerPin;
     bool moving;
     int positionActual;
     int positionDesired;

@@ -7,9 +7,12 @@
 
 SYSTEM_THREAD(ENABLED);
 
+// For setting the SoftAP SSID:
+// System.set(SYSTEM_CONFIG_SOFTAP_PREFIX, "ClothesClock");
+
 void goToSleep();
 
-Pointer pointer(D0);
+Pointer pointer(D0, D1);
 WeatherPointer weatherPointer(pointer);
 Persistence persistence;
 PointerPersistence pointerPersistence(pointer, persistence);

@@ -2,8 +2,8 @@
 #include "pointer.h"
 #include <algorithm>
 
-Pointer::Pointer(int pin)
-  : pin(pin), timer(*this) {
+Pointer::Pointer(int pwmPin, int powerPin)
+  : pwmPin(pwmPin), powerPin(powerPin), timer(*this) {
 }
 
 void Pointer::moveToAngle(int angle) {
@@ -32,7 +32,7 @@ void Pointer::setInitialAngle(int angle) {
 }
 
 void Pointer::startServo() {
-  servo.attach(pin);
+  servo.attach(pwmPin);
   moving = true;
 }
 
@@ -45,6 +45,9 @@ void Pointer::updateServo() {
 
   updatePositionActual();
   servo.write(positionActual);
+
+  pinMode(powerPin, OUTPUT);
+  digitalWrite(powerPin, HIGH);
 }
 
 void Pointer::updatePositionActual() {
@@ -53,6 +56,7 @@ void Pointer::updatePositionActual() {
 }
 
 void Pointer::stopServo() {
+  pinMode(powerPin, INPUT);
   servo.detach();
   moving = false;
 }
