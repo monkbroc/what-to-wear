@@ -8,19 +8,20 @@ Pointer::Pointer(int pwmPin, int powerPin)
 
 void Pointer::moveToAngle(int angle) {
   {
-    CriticalSection cs;
-    if(positionDesired == angle) {
-      return;
-    }
+    SINGLE_THREADED_BLOCK() {
+      if(positionDesired == angle) {
+        return;
+      }
 
-    positionDesired = angle;
+      positionDesired = angle;
 
-    if(!isMoving()) {
-      startServo();
-      timer.start();
+      if(!isMoving()) {
+        startServo();
+        timer.start();
+      }
     }
+    notifyObservers();
   }
-  notifyObservers();
 }
 
 bool Pointer::isMoving() {
