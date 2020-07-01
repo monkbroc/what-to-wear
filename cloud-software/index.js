@@ -1,18 +1,8 @@
-var env = require("./env");
-var datastore = require("./datastore");
-var res = require("./res");
+require('dotenv').config();
 
-var whatToWear = require("./hook/what-to-wear.js");
+const app = require('./app');
 
-datastore.load();
-
-var hook = {
-  datastore: datastore,
-  env: env,
-  res: res
-};
-
-hook.params = {};
-
-
-whatToWear(hook);
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
+	console.log(`listening on port ${port}`);
+});
