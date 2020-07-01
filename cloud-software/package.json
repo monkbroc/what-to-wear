@@ -4,6 +4,7 @@
   "description": "Converts weather forecast into clothes to wear",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
     "test": "mocha *.test.js"
   },
   "author": "Julien Vanier",
