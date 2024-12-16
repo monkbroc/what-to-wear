@@ -1,7 +1,7 @@
 const got = require('got');
 
 function forecastUrl({ apiKey, lat, lon }) {
-	return `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${apiKey}&exclude=minutely,hourly&units=metric`;
+	return `https://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${lon}&appid=${apiKey}&exclude=minutely,hourly&units=metric`;
 }
 
 async function getForecast({ url, _got = got }) {
